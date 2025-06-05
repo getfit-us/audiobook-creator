@@ -2,13 +2,18 @@
 
 ## Overview
 
+Original Author: https://github.com/prakharsr/audiobook-creator
+ **Prakhar Sharma**
+
+Additions and Changes:
+**Chris Scott**
+
 Audiobook Creator is an open-source project designed to convert books in various text formats (e.g., EPUB, PDF, etc.) into fully voiced audiobooks with intelligent character voice attribution. It leverages modern Natural Language Processing (NLP), Large Language Models (LLMs), and Text-to-Speech (TTS) technologies to create an engaging and dynamic audiobook experience. The project is licensed under the GNU General Public License v3.0 (GPL-3.0), ensuring that it remains free and open for everyone to use, modify, and distribute.
 
 Sample multi voice audio for a short story : https://audio.com/prakhar-sharma/audio/generated-sample-multi-voice-audiobook
 
-Watch the demo video:
 
-[![Watch the demo video](https://img.youtube.com/vi/E5lUQoBjquo/maxresdefault.jpg)](https://www.youtube.com/watch?v=E5lUQoBjquo)
+
 
 <details>
 <summary>The project consists of three main components:</summary>
@@ -87,13 +92,7 @@ Watch the demo video:
    --restart always \
    --network host \
    --gpus all \
-   ghcr.io/remsky/kokoro-fastapi-gpu:v0.2.2     dropdown_update,  
-            group_update,  
-            gr.update(visible=continue_btn_visible),  dropdown_update,  
-            group_update,  
-            gr.update(visible=continue_btn_visible),  dropdown_update,  
-            group_update,  
-            gr.update(visible=continue_btn_visible), \
+   ghcr.io/remsky/kokoro-fastapi-gpu:v0.2.2    
    uvicorn api.src.main:app --host 0.0.0.0 --port 8880 --log-level debug \
    --workers {MAX_PARALLEL_REQUESTS_BATCH_SIZE}
   ```
@@ -136,46 +135,13 @@ Watch the demo video:
 - After this, choose between the below options for the next step to run the audiobook creator app:
 
    <details>
-   <summary>Quickest Start (docker run)</summary>
-
-  - Make sure your .env is configured correctly and your LLM and Kokoro FastAPI are running. In the same folder where .env is present, run the below command
-  - Choose between the types of inference:
-
-    For CUDA based GPU inference (Apple Silicon GPUs currently not supported, use CPU based inference instead)
-
-    ```bash
-    docker run \
-       --name audiobook_creator \
-       --restart always \
-       --network host \
-       --gpus all \
-       --env-file .env \
-       -v model_cache:/app/model_cache \
-       ghcr.io/prakharsr/audiobook_creator_gpu:v1.3
-    ```
-
-    For CPU based inference
-
-    ```bash
-    docker run \
-       --name audiobook_creator \
-       --restart always \
-       --network host \
-       --env-file .env \
-       -v model_cache:/app/model_cache \
-       ghcr.io/prakharsr/audiobook_creator_cpu:v1.3
-    ```
-
-  - Wait for the models to download and then navigate to http://localhost:7860 for the Gradio UI
-  </details>
-
-   <details>
+   
    <summary>Quick Start (docker compose)</summary>
 
   - Clone the repository
 
     ```bash
-    git clone https://github.com/prakharsr/audiobook-creator.git
+    git clone https://github.com/getfit-us/audiobook-creator-v2.git
 
     cd audiobook-creator
     ```
@@ -220,7 +186,7 @@ Watch the demo video:
   1.  Clone the repository
 
       ```bash
-      git clone https://github.com/prakharsr/audiobook-creator.git
+      git clone https://github.com/getfit-us/audiobook-creator-v2.git
 
       cd audiobook-creator
       ```
@@ -292,7 +258,8 @@ You can choose either service based on your preferences. Both are compatible wit
 Planned future enhancements:
 
 - ⏳ Add support for choosing between various languages which are currently supported by Kokoro.
-- ⏳ Add support for [Zonos](https://github.com/Zyphra/Zonos), Models: https://huggingface.co/Zyphra/Zonos-v0.1-hybrid, https://huggingface.co/Zyphra/Zonos-v0.1-transformer. Zonos supports voices with a wide range of emotions so adding that as a feature will greatly enhance the listening experience.
+- ✅ Add UI Configuration for all LLM, TTS endpoints (allows for quick changes without modifying files) 
+
 - ✅ Add support for [Orpheus TTS](https://github.com/Lex-au/Orpheus-FastAPI). Orpheus supports emotion tags and 8 different voices for a more immersive listening experience.
 - ✅ Support batch inference for Kokoro to speed up audiobook generation
 - ✅ Give choice to the user to select the voice in which they want the book to be read (male voice/ female voice)
@@ -309,7 +276,7 @@ Planned future enhancements:
 
 ## Support
 
-For issues or questions, open an issue on the [GitHub repository](https://github.com/prakharsr/audiobook-creator/issues).
+For issues or questions, open an issue on the [GitHub repository](https://github.com/getfit-us/audiobook-creator-v2)
 
 ## License
 
@@ -319,10 +286,7 @@ This project is licensed under the GNU General Public License v3.0 (GPL-3.0). Se
 
 Contributions are welcome! Please open an issue or pull request to fix a bug or add features.
 
-## Donations
 
-If you find this project useful and would like to support my work, consider donating:  
-[PayPal](https://paypal.me/prakharsr)
 
 ---
 
